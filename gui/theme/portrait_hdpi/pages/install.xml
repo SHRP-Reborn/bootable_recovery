@@ -122,8 +122,8 @@
 				</listitem>
 				<listitem name="{@auto_reflashtwrp_chk=Automatically Reflash SHRP Reborn after flashing a ROM}">
 					<condition var1="tw_has_boot_slots" var2="1"/>
-					<condition var1="tw_has_repack_tools" var2="1"/>
 					<condition var1="tw_no_flash_current_twrp" var2="0"/>
+					<condition var1="tw_is_vendor_boot_header_v3" var2="0"/>
 					<data variable="tw_auto_reflashtwrp"/>
 				</listitem>
 			</listbox>
