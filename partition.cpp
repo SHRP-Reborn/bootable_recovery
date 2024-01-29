@@ -1720,7 +1720,7 @@ bool TWPartition::Bind_Mount(bool Display_Error) {
 	return true;
 }
 
-bool TWPartition::UnMount(bool Display_Error) {
+bool TWPartition::UnMount(bool Display_Error, int flags) {
 	if (Is_Mounted()) {
 		int never_unmount_system;
 
@@ -1732,9 +1732,9 @@ bool TWPartition::UnMount(bool Display_Error) {
 			PartitionManager.Remove_MTP_Storage(MTP_Storage_ID);
 
 		if (!Symlink_Mount_Point.empty())
-			umount(Symlink_Mount_Point.c_str());
+			umount2(Symlink_Mount_Point.c_str(), flags);
 
-		umount(Mount_Point.c_str());
+		umount2(Mount_Point.c_str(), flags);
 		if (Is_Mounted()) {
 			if (Display_Error)
 				gui_msg(Msg(msg::kError, "fail_unmount=Failed to unmount '{1}' ({2})")(Mount_Point)(strerror(errno)));
